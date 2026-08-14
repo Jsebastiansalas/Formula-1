@@ -1,0 +1,521 @@
+[
+  {
+    "nombre": "Albert Park Circuit",
+    "pais": "Australia",
+    "longitud_km": 5.28,
+    "vueltas": 58,
+    "descripcion": "Circuito semipermanente en Melbourne, tradicionalmente la primera carrera de la temporada, trazado rápido alrededor de un lago urbano.",
+    "record_vuelta": {
+      "tiempo": "1:19.813",
+      "piloto": "Charles Leclerc",
+      "anio": 2024
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 3
+      },
+      {
+        "temporada": 2025,
+        "piloto": 7
+      }
+    ]
+  },
+  {
+    "nombre": "Shanghai International Circuit",
+    "pais": "China",
+    "longitud_km": 5.45,
+    "vueltas": 56,
+    "descripcion": "Circuito con una larga recta trasera y la característica curva 1-2-3 en espiral que exige alta carga aerodinámica.",
+    "record_vuelta": {
+      "tiempo": "1:32.238",
+      "piloto": "Michael Schumacher",
+      "anio": 2004
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 7
+      },
+      {
+        "temporada": 2025,
+        "piloto": 8
+      }
+    ]
+  },
+  {
+    "nombre": "Suzuka International Racing Course",
+    "pais": "Japón",
+    "longitud_km": 5.81,
+    "vueltas": 53,
+    "descripcion": "Un circuito desafiante con un diseño en forma de ocho, famoso por sus curvas de alta velocidad como 130R y la 'S' de Senna.",
+    "record_vuelta": {
+      "tiempo": "1:30.983",
+      "piloto": "Lewis Hamilton",
+      "anio": 2019
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 1
+      },
+      {
+        "temporada": 2025,
+        "piloto": 1
+      }
+    ]
+  },
+  {
+    "nombre": "Bahrain International Circuit",
+    "pais": "Baréin",
+    "longitud_km": 5.41,
+    "vueltas": 57,
+    "descripcion": "Circuito en el desierto de Sakhir, superficie abrasiva que exige buena gestión de neumáticos, suele albergar la pretemporada.",
+    "record_vuelta": {
+      "tiempo": "1:31.447",
+      "piloto": "Pedro de la Rosa",
+      "anio": 2005
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 1
+      },
+      {
+        "temporada": 2025,
+        "piloto": 3
+      }
+    ]
+  },
+  {
+    "nombre": "Jeddah Street Circuit",
+    "pais": "Arabia Saudita",
+    "longitud_km": 6.17,
+    "vueltas": 50,
+    "descripcion": "El circuito urbano más rápido del calendario, con muros cercanos y curvas de alta velocidad iluminadas de noche.",
+    "record_vuelta": {
+      "tiempo": "1:27.511",
+      "piloto": "Lewis Hamilton",
+      "anio": 2021
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 3
+      },
+      {
+        "temporada": 2025,
+        "piloto": 1
+      }
+    ]
+  },
+  {
+    "nombre": "Miami International Autodrome",
+    "pais": "Estados Unidos",
+    "longitud_km": 5.41,
+    "vueltas": 57,
+    "descripcion": "Trazado alrededor del estadio Hard Rock, mezcla curvas lentas técnicas con una sección rápida junto al agua.",
+    "record_vuelta": {
+      "tiempo": "1:26.841",
+      "piloto": "Max Verstappen",
+      "anio": 2023
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 7
+      },
+      {
+        "temporada": 2025,
+        "piloto": 7
+      }
+    ]
+  },
+  {
+    "nombre": "Circuit Gilles-Villeneuve",
+    "pais": "Canadá",
+    "longitud_km": 4.36,
+    "vueltas": 70,
+    "descripcion": "Circuito semipermanente en la Isla Notre-Dame, con el famoso 'Muro de los Campeones' en la última chicane.",
+    "record_vuelta": {
+      "tiempo": "1:13.078",
+      "piloto": "Valtteri Bottas",
+      "anio": 2019
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 5
+      },
+      {
+        "temporada": 2025,
+        "piloto": 1
+      }
+    ]
+  },
+  {
+    "nombre": "Circuito de Mónaco",
+    "pais": "Mónaco",
+    "longitud_km": 3.34,
+    "vueltas": 78,
+    "descripcion": "Uno de los circuitos más prestigiosos y difíciles del calendario, conocido por sus calles angostas y la falta de zonas de adelantamiento.",
+    "record_vuelta": {
+      "tiempo": "1:10.166",
+      "piloto": "Lewis Hamilton",
+      "anio": 2019
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 3
+      },
+      {
+        "temporada": 2025,
+        "piloto": 3
+      }
+    ]
+  },
+  {
+    "nombre": "Circuit de Barcelona-Catalunya",
+    "pais": "España",
+    "longitud_km": 4.66,
+    "vueltas": 66,
+    "descripcion": "Circuito técnico y exigente para el chasis, usado también en pretemporada por su variedad de curvas.",
+    "record_vuelta": {
+      "tiempo": "1:16.330",
+      "piloto": "Max Verstappen",
+      "anio": 2023
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 1
+      },
+      {
+        "temporada": 2025,
+        "piloto": 7
+      }
+    ]
+  },
+  {
+    "nombre": "Red Bull Ring",
+    "pais": "Austria",
+    "longitud_km": 4.32,
+    "vueltas": 71,
+    "descripcion": "Circuito corto y fluido en las montañas de Estiria, con fuertes cambios de elevación y rectas cortas.",
+    "record_vuelta": {
+      "tiempo": "1:05.619",
+      "piloto": "Carlos Sainz",
+      "anio": 2020
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 7
+      },
+      {
+        "temporada": 2025,
+        "piloto": 1
+      }
+    ]
+  },
+  {
+    "nombre": "Silverstone",
+    "pais": "Reino Unido",
+    "longitud_km": 5.89,
+    "vueltas": 52,
+    "descripcion": "Uno de los circuitos más rápidos del calendario, con curvas de alta velocidad como Maggotts y Becketts.",
+    "record_vuelta": {
+      "tiempo": "1:27.097",
+      "piloto": "Max Verstappen",
+      "anio": 2020
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 1
+      },
+      {
+        "temporada": 2025,
+        "piloto": 7
+      }
+    ]
+  },
+  {
+    "nombre": "Circuito de Spa-Francorchamps",
+    "pais": "Bélgica",
+    "longitud_km": 7.0,
+    "vueltas": 44,
+    "descripcion": "Famoso por la curva Eau Rouge y la larga recta de Kemmel, un circuito donde la potencia del motor es clave.",
+    "record_vuelta": {
+      "tiempo": "1:46.286",
+      "piloto": "Valtteri Bottas",
+      "anio": 2018
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 1
+      },
+      {
+        "temporada": 2025,
+        "piloto": 7
+      }
+    ]
+  },
+  {
+    "nombre": "Hungaroring",
+    "pais": "Hungría",
+    "longitud_km": 4.38,
+    "vueltas": 70,
+    "descripcion": "Circuito estrecho y sinuoso apodado 'Mónaco sin muros', muy exigente para adelantar.",
+    "record_vuelta": {
+      "tiempo": "1:16.627",
+      "piloto": "Lewis Hamilton",
+      "anio": 2020
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 8
+      },
+      {
+        "temporada": 2025,
+        "piloto": 7
+      }
+    ]
+  },
+  {
+    "nombre": "Circuit Zandvoort",
+    "pais": "Países Bajos",
+    "longitud_km": 4.26,
+    "vueltas": 72,
+    "descripcion": "Circuito costero de peralte pronunciado en sus curvas finales, ambiente de local para Verstappen.",
+    "record_vuelta": {
+      "tiempo": "1:11.097",
+      "piloto": "Lewis Hamilton",
+      "anio": 2021
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 1
+      },
+      {
+        "temporada": 2025,
+        "piloto": 7
+      }
+    ]
+  },
+  {
+    "nombre": "Circuito de Monza",
+    "pais": "Italia",
+    "longitud_km": 5.79,
+    "vueltas": 53,
+    "descripcion": "Conocido como 'El Templo de la Velocidad', Monza es el circuito más rápido del calendario con largas rectas y chicanes icónicas.",
+    "record_vuelta": {
+      "tiempo": "1:21.046",
+      "piloto": "Rubens Barrichello",
+      "anio": 2004
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 3
+      },
+      {
+        "temporada": 2025,
+        "piloto": 7
+      }
+    ]
+  },
+  {
+    "nombre": "Circuito de Madring",
+    "pais": "España",
+    "longitud_km": 5.47,
+    "vueltas": 56,
+    "descripcion": "Nuevo circuito urbano en Madrid que debuta en 2026, mezcla tramos permanentes con calles de la ciudad.",
+    "record_vuelta": {
+      "tiempo": "Sin registro (circuito nuevo, debut 2026)",
+      "piloto": "N/A",
+      "anio": 2026
+    },
+    "ganadores": []
+  },
+  {
+    "nombre": "Baku City Circuit",
+    "pais": "Azerbaiyán",
+    "longitud_km": 6.0,
+    "vueltas": 51,
+    "descripcion": "Circuito urbano con la recta más larga del calendario y una sección estrecha junto a la muralla de la ciudad vieja.",
+    "record_vuelta": {
+      "tiempo": "1:43.009",
+      "piloto": "Charles Leclerc",
+      "anio": 2019
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 8
+      },
+      {
+        "temporada": 2025,
+        "piloto": 1
+      }
+    ]
+  },
+  {
+    "nombre": "Marina Bay Street Circuit",
+    "pais": "Singapur",
+    "longitud_km": 4.94,
+    "vueltas": 62,
+    "descripcion": "Carrera nocturna urbana, una de las más exigentes físicamente por su duración y humedad.",
+    "record_vuelta": {
+      "tiempo": "1:35.867",
+      "piloto": "Lewis Hamilton",
+      "anio": 2023
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 7
+      },
+      {
+        "temporada": 2025,
+        "piloto": 1
+      }
+    ]
+  },
+  {
+    "nombre": "Circuit of the Americas",
+    "pais": "Estados Unidos",
+    "longitud_km": 5.51,
+    "vueltas": 56,
+    "descripcion": "Circuito en Austin con una pronunciada subida en la curva 1 inspirada en Silverstone y Spa.",
+    "record_vuelta": {
+      "tiempo": "1:36.169",
+      "piloto": "Charles Leclerc",
+      "anio": 2019
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 1
+      },
+      {
+        "temporada": 2025,
+        "piloto": 1
+      }
+    ]
+  },
+  {
+    "nombre": "Autódromo Hermanos Rodríguez",
+    "pais": "México",
+    "longitud_km": 4.3,
+    "vueltas": 71,
+    "descripcion": "Circuito de gran altitud que reduce la carga aerodinámica efectiva, con el estadio Foro Sol en su sección final.",
+    "record_vuelta": {
+      "tiempo": "1:17.774",
+      "piloto": "Valtteri Bottas",
+      "anio": 2021
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 1
+      },
+      {
+        "temporada": 2025,
+        "piloto": 1
+      }
+    ]
+  },
+  {
+    "nombre": "Interlagos",
+    "pais": "Brasil",
+    "longitud_km": 4.31,
+    "vueltas": 71,
+    "descripcion": "Interlagos es un circuito legendario con cambios de elevación y un trazado técnico.",
+    "record_vuelta": {
+      "tiempo": "1:10.540",
+      "piloto": "Valtteri Bottas",
+      "anio": 2018
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 1
+      },
+      {
+        "temporada": 2025,
+        "piloto": 1
+      }
+    ]
+  },
+  {
+    "nombre": "Las Vegas Strip Circuit",
+    "pais": "Estados Unidos",
+    "longitud_km": 6.2,
+    "vueltas": 50,
+    "descripcion": "Carrera nocturna sobre el Strip de Las Vegas, muy rápida y con temperaturas de pista extremadamente bajas.",
+    "record_vuelta": {
+      "tiempo": "1:35.490",
+      "piloto": "Oscar Piastri",
+      "anio": 2023
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 5
+      },
+      {
+        "temporada": 2025,
+        "piloto": 7
+      }
+    ]
+  },
+  {
+    "nombre": "Lusail International Circuit",
+    "pais": "Catar",
+    "longitud_km": 5.38,
+    "vueltas": 57,
+    "descripcion": "Circuito rápido y fluido en el desierto, carrera nocturna con altas exigencias de neumáticos.",
+    "record_vuelta": {
+      "tiempo": "1:24.319",
+      "piloto": "Max Verstappen",
+      "anio": 2023
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 1
+      },
+      {
+        "temporada": 2025,
+        "piloto": 7
+      }
+    ]
+  },
+  {
+    "nombre": "Circuito de Yas Marina",
+    "pais": "Emiratos Árabes Unidos",
+    "longitud_km": 5.28,
+    "vueltas": 58,
+    "descripcion": "Ubicado en Abu Dhabi, es famoso por ser el circuito donde se definen muchos campeonatos, con carrera nocturna que cierra la temporada.",
+    "record_vuelta": {
+      "tiempo": "1:39.283",
+      "piloto": "Lewis Hamilton",
+      "anio": 2019
+    },
+    "ganadores": [
+      {
+        "temporada": 2024,
+        "piloto": 5
+      },
+      {
+        "temporada": 2025,
+        "piloto": 7
+      }
+    ]
+  }
+]

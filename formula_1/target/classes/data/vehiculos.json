@@ -1,0 +1,574 @@
+[
+  {
+    "equipo": "Red Bull Racing",
+    "modelo": "RB22",
+    "motor": "Red Bull Ford Powertrains",
+    "velocidad_maxima_kmh": 362,
+    "aceleracion_0_100": 2.4,
+    "pilotos": [
+      1,
+      2
+    ],
+    "rendimiento": {
+      "conduccion_normal": {
+        "velocidad_promedio_kmh": 322,
+        "consumo_combustible": {
+          "seco": 1.9,
+          "lluvioso": 2.1,
+          "extremo": 2.4
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.5,
+          "lluvioso": 0.8,
+          "extremo": 2.5
+        }
+      },
+      "conduccion_agresiva": {
+        "velocidad_promedio_kmh": 337,
+        "consumo_combustible": {
+          "seco": 2.5,
+          "lluvioso": 2.7,
+          "extremo": 3.1
+        },
+        "desgaste_neumaticos": {
+          "seco": 2.2,
+          "lluvioso": 1.3,
+          "extremo": 3.7
+        }
+      },
+      "ahorro_combustible": {
+        "velocidad_promedio_kmh": 297,
+        "consumo_combustible": {
+          "seco": 1.6,
+          "lluvioso": 1.8,
+          "extremo": 2.1
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.0,
+          "lluvioso": 0.6,
+          "extremo": 1.8
+        }
+      }
+    }
+  },
+  {
+    "equipo": "Ferrari",
+    "modelo": "SF-26",
+    "motor": "Ferrari",
+    "velocidad_maxima_kmh": 360,
+    "aceleracion_0_100": 2.4,
+    "pilotos": [
+      3,
+      4
+    ],
+    "rendimiento": {
+      "conduccion_normal": {
+        "velocidad_promedio_kmh": 320,
+        "consumo_combustible": {
+          "seco": 2.0,
+          "lluvioso": 2.2,
+          "extremo": 2.5
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.6,
+          "lluvioso": 0.9,
+          "extremo": 2.6
+        }
+      },
+      "conduccion_agresiva": {
+        "velocidad_promedio_kmh": 335,
+        "consumo_combustible": {
+          "seco": 2.6,
+          "lluvioso": 2.8,
+          "extremo": 3.2
+        },
+        "desgaste_neumaticos": {
+          "seco": 2.3,
+          "lluvioso": 1.4,
+          "extremo": 3.8
+        }
+      },
+      "ahorro_combustible": {
+        "velocidad_promedio_kmh": 295,
+        "consumo_combustible": {
+          "seco": 1.7,
+          "lluvioso": 1.9,
+          "extremo": 2.2
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.1,
+          "lluvioso": 0.6,
+          "extremo": 1.9
+        }
+      }
+    }
+  },
+  {
+    "equipo": "Mercedes-AMG Petronas",
+    "modelo": "W17",
+    "motor": "Mercedes",
+    "velocidad_maxima_kmh": 358,
+    "aceleracion_0_100": 2.5,
+    "pilotos": [
+      5,
+      6
+    ],
+    "rendimiento": {
+      "conduccion_normal": {
+        "velocidad_promedio_kmh": 318,
+        "consumo_combustible": {
+          "seco": 1.9,
+          "lluvioso": 2.1,
+          "extremo": 2.4
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.5,
+          "lluvioso": 0.8,
+          "extremo": 2.5
+        }
+      },
+      "conduccion_agresiva": {
+        "velocidad_promedio_kmh": 333,
+        "consumo_combustible": {
+          "seco": 2.5,
+          "lluvioso": 2.7,
+          "extremo": 3.1
+        },
+        "desgaste_neumaticos": {
+          "seco": 2.2,
+          "lluvioso": 1.3,
+          "extremo": 3.7
+        }
+      },
+      "ahorro_combustible": {
+        "velocidad_promedio_kmh": 293,
+        "consumo_combustible": {
+          "seco": 1.6,
+          "lluvioso": 1.8,
+          "extremo": 2.1
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.0,
+          "lluvioso": 0.6,
+          "extremo": 1.8
+        }
+      }
+    }
+  },
+  {
+    "equipo": "McLaren",
+    "modelo": "MCL40",
+    "motor": "Mercedes",
+    "velocidad_maxima_kmh": 363,
+    "aceleracion_0_100": 2.4,
+    "pilotos": [
+      7,
+      8
+    ],
+    "rendimiento": {
+      "conduccion_normal": {
+        "velocidad_promedio_kmh": 325,
+        "consumo_combustible": {
+          "seco": 1.9,
+          "lluvioso": 2.1,
+          "extremo": 2.4
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.5,
+          "lluvioso": 0.8,
+          "extremo": 2.5
+        }
+      },
+      "conduccion_agresiva": {
+        "velocidad_promedio_kmh": 340,
+        "consumo_combustible": {
+          "seco": 2.5,
+          "lluvioso": 2.7,
+          "extremo": 3.1
+        },
+        "desgaste_neumaticos": {
+          "seco": 2.2,
+          "lluvioso": 1.3,
+          "extremo": 3.7
+        }
+      },
+      "ahorro_combustible": {
+        "velocidad_promedio_kmh": 300,
+        "consumo_combustible": {
+          "seco": 1.6,
+          "lluvioso": 1.8,
+          "extremo": 2.1
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.0,
+          "lluvioso": 0.6,
+          "extremo": 1.8
+        }
+      }
+    }
+  },
+  {
+    "equipo": "Aston Martin",
+    "modelo": "AMR26",
+    "motor": "Honda",
+    "velocidad_maxima_kmh": 350,
+    "aceleracion_0_100": 2.6,
+    "pilotos": [
+      9,
+      10
+    ],
+    "rendimiento": {
+      "conduccion_normal": {
+        "velocidad_promedio_kmh": 312,
+        "consumo_combustible": {
+          "seco": 2.1,
+          "lluvioso": 2.3,
+          "extremo": 2.6
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.7,
+          "lluvioso": 1.0,
+          "extremo": 2.7
+        }
+      },
+      "conduccion_agresiva": {
+        "velocidad_promedio_kmh": 327,
+        "consumo_combustible": {
+          "seco": 2.7,
+          "lluvioso": 2.9,
+          "extremo": 3.3
+        },
+        "desgaste_neumaticos": {
+          "seco": 2.4,
+          "lluvioso": 1.5,
+          "extremo": 3.9
+        }
+      },
+      "ahorro_combustible": {
+        "velocidad_promedio_kmh": 287,
+        "consumo_combustible": {
+          "seco": 1.8,
+          "lluvioso": 2.0,
+          "extremo": 2.3
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.2,
+          "lluvioso": 0.7,
+          "extremo": 2.0
+        }
+      }
+    }
+  },
+  {
+    "equipo": "Alpine",
+    "modelo": "A526",
+    "motor": "Mercedes",
+    "velocidad_maxima_kmh": 347,
+    "aceleracion_0_100": 2.7,
+    "pilotos": [
+      11,
+      12
+    ],
+    "rendimiento": {
+      "conduccion_normal": {
+        "velocidad_promedio_kmh": 305,
+        "consumo_combustible": {
+          "seco": 2.1,
+          "lluvioso": 2.3,
+          "extremo": 2.6
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.7,
+          "lluvioso": 1.0,
+          "extremo": 2.7
+        }
+      },
+      "conduccion_agresiva": {
+        "velocidad_promedio_kmh": 320,
+        "consumo_combustible": {
+          "seco": 2.7,
+          "lluvioso": 2.9,
+          "extremo": 3.3
+        },
+        "desgaste_neumaticos": {
+          "seco": 2.4,
+          "lluvioso": 1.5,
+          "extremo": 3.9
+        }
+      },
+      "ahorro_combustible": {
+        "velocidad_promedio_kmh": 280,
+        "consumo_combustible": {
+          "seco": 1.8,
+          "lluvioso": 2.0,
+          "extremo": 2.3
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.2,
+          "lluvioso": 0.7,
+          "extremo": 2.0
+        }
+      }
+    }
+  },
+  {
+    "equipo": "Audi",
+    "modelo": "C46",
+    "motor": "Audi",
+    "velocidad_maxima_kmh": 346,
+    "aceleracion_0_100": 2.7,
+    "pilotos": [
+      13,
+      14
+    ],
+    "rendimiento": {
+      "conduccion_normal": {
+        "velocidad_promedio_kmh": 302,
+        "consumo_combustible": {
+          "seco": 2.2,
+          "lluvioso": 2.4,
+          "extremo": 2.7
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.8,
+          "lluvioso": 1.1,
+          "extremo": 2.8
+        }
+      },
+      "conduccion_agresiva": {
+        "velocidad_promedio_kmh": 317,
+        "consumo_combustible": {
+          "seco": 2.8,
+          "lluvioso": 3.0,
+          "extremo": 3.4
+        },
+        "desgaste_neumaticos": {
+          "seco": 2.5,
+          "lluvioso": 1.6,
+          "extremo": 4.0
+        }
+      },
+      "ahorro_combustible": {
+        "velocidad_promedio_kmh": 277,
+        "consumo_combustible": {
+          "seco": 1.9,
+          "lluvioso": 2.1,
+          "extremo": 2.4
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.3,
+          "lluvioso": 0.8,
+          "extremo": 2.1
+        }
+      }
+    }
+  },
+  {
+    "equipo": "Haas",
+    "modelo": "VF-26",
+    "motor": "Ferrari",
+    "velocidad_maxima_kmh": 340,
+    "aceleracion_0_100": 2.9,
+    "pilotos": [
+      15,
+      16
+    ],
+    "rendimiento": {
+      "conduccion_normal": {
+        "velocidad_promedio_kmh": 298,
+        "consumo_combustible": {
+          "seco": 2.2,
+          "lluvioso": 2.4,
+          "extremo": 2.7
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.8,
+          "lluvioso": 1.1,
+          "extremo": 2.8
+        }
+      },
+      "conduccion_agresiva": {
+        "velocidad_promedio_kmh": 313,
+        "consumo_combustible": {
+          "seco": 2.8,
+          "lluvioso": 3.0,
+          "extremo": 3.4
+        },
+        "desgaste_neumaticos": {
+          "seco": 2.5,
+          "lluvioso": 1.6,
+          "extremo": 4.0
+        }
+      },
+      "ahorro_combustible": {
+        "velocidad_promedio_kmh": 273,
+        "consumo_combustible": {
+          "seco": 1.9,
+          "lluvioso": 2.1,
+          "extremo": 2.4
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.3,
+          "lluvioso": 0.8,
+          "extremo": 2.1
+        }
+      }
+    }
+  },
+  {
+    "equipo": "Racing Bulls",
+    "modelo": "VCARB 03",
+    "motor": "Red Bull Ford Powertrains",
+    "velocidad_maxima_kmh": 342,
+    "aceleracion_0_100": 2.8,
+    "pilotos": [
+      17,
+      18
+    ],
+    "rendimiento": {
+      "conduccion_normal": {
+        "velocidad_promedio_kmh": 295,
+        "consumo_combustible": {
+          "seco": 2.1,
+          "lluvioso": 2.3,
+          "extremo": 2.6
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.7,
+          "lluvioso": 1.0,
+          "extremo": 2.7
+        }
+      },
+      "conduccion_agresiva": {
+        "velocidad_promedio_kmh": 310,
+        "consumo_combustible": {
+          "seco": 2.7,
+          "lluvioso": 2.9,
+          "extremo": 3.3
+        },
+        "desgaste_neumaticos": {
+          "seco": 2.4,
+          "lluvioso": 1.5,
+          "extremo": 3.9
+        }
+      },
+      "ahorro_combustible": {
+        "velocidad_promedio_kmh": 270,
+        "consumo_combustible": {
+          "seco": 1.8,
+          "lluvioso": 2.0,
+          "extremo": 2.3
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.2,
+          "lluvioso": 0.7,
+          "extremo": 2.0
+        }
+      }
+    }
+  },
+  {
+    "equipo": "Williams",
+    "modelo": "FW48",
+    "motor": "Mercedes",
+    "velocidad_maxima_kmh": 352,
+    "aceleracion_0_100": 2.6,
+    "pilotos": [
+      19,
+      20
+    ],
+    "rendimiento": {
+      "conduccion_normal": {
+        "velocidad_promedio_kmh": 308,
+        "consumo_combustible": {
+          "seco": 2.0,
+          "lluvioso": 2.2,
+          "extremo": 2.5
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.6,
+          "lluvioso": 0.9,
+          "extremo": 2.6
+        }
+      },
+      "conduccion_agresiva": {
+        "velocidad_promedio_kmh": 323,
+        "consumo_combustible": {
+          "seco": 2.6,
+          "lluvioso": 2.8,
+          "extremo": 3.2
+        },
+        "desgaste_neumaticos": {
+          "seco": 2.3,
+          "lluvioso": 1.4,
+          "extremo": 3.8
+        }
+      },
+      "ahorro_combustible": {
+        "velocidad_promedio_kmh": 283,
+        "consumo_combustible": {
+          "seco": 1.7,
+          "lluvioso": 1.9,
+          "extremo": 2.2
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.1,
+          "lluvioso": 0.6,
+          "extremo": 1.9
+        }
+      }
+    }
+  },
+  {
+    "equipo": "Cadillac",
+    "modelo": "CD-01",
+    "motor": "Ferrari",
+    "velocidad_maxima_kmh": 338,
+    "aceleracion_0_100": 2.9,
+    "pilotos": [
+      21,
+      22
+    ],
+    "rendimiento": {
+      "conduccion_normal": {
+        "velocidad_promedio_kmh": 290,
+        "consumo_combustible": {
+          "seco": 2.3,
+          "lluvioso": 2.5,
+          "extremo": 2.8
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.9,
+          "lluvioso": 1.2,
+          "extremo": 2.9
+        }
+      },
+      "conduccion_agresiva": {
+        "velocidad_promedio_kmh": 305,
+        "consumo_combustible": {
+          "seco": 2.9,
+          "lluvioso": 3.1,
+          "extremo": 3.5
+        },
+        "desgaste_neumaticos": {
+          "seco": 2.6,
+          "lluvioso": 1.7,
+          "extremo": 4.1
+        }
+      },
+      "ahorro_combustible": {
+        "velocidad_promedio_kmh": 265,
+        "consumo_combustible": {
+          "seco": 2.0,
+          "lluvioso": 2.2,
+          "extremo": 2.5
+        },
+        "desgaste_neumaticos": {
+          "seco": 1.4,
+          "lluvioso": 0.9,
+          "extremo": 2.2
+        }
+      }
+    }
+  }
+]
