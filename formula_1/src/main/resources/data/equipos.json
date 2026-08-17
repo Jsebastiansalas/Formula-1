@@ -1,0 +1,101 @@
+[
+  {
+    "nombre": "Red Bull Racing",
+    "pais": "Austria",
+    "motor": "Red Bull Ford Powertrains",
+    "pilotos": [
+      1,
+      2
+    ]
+  },
+  {
+    "nombre": "Ferrari",
+    "pais": "Italia",
+    "motor": "Ferrari",
+    "pilotos": [
+      3,
+      4
+    ]
+  },
+  {
+    "nombre": "Mercedes-AMG Petronas",
+    "pais": "Alemania",
+    "motor": "Mercedes",
+    "pilotos": [
+      5,
+      6
+    ]
+  },
+  {
+    "nombre": "McLaren",
+    "pais": "Reino Unido",
+    "motor": "Mercedes",
+    "pilotos": [
+      7,
+      8
+    ]
+  },
+  {
+    "nombre": "Aston Martin",
+    "pais": "Reino Unido",
+    "motor": "Honda",
+    "pilotos": [
+      9,
+      10
+    ]
+  },
+  {
+    "nombre": "Alpine",
+    "pais": "Francia",
+    "motor": "Mercedes",
+    "pilotos": [
+      11,
+      12
+    ]
+  },
+  {
+    "nombre": "Audi",
+    "pais": "Suiza/Alemania",
+    "motor": "Audi",
+    "pilotos": [
+      13,
+      14
+    ]
+  },
+  {
+    "nombre": "Haas",
+    "pais": "Estados Unidos",
+    "motor": "Ferrari",
+    "pilotos": [
+      15,
+      16
+    ]
+  },
+  {
+    "nombre": "Racing Bulls",
+    "pais": "Italia",
+    "motor": "Red Bull Ford Powertrains",
+    "pilotos": [
+      17,
+      18
+    ]
+  },
+  {
+    "nombre": "Williams",
+    "pais": "Reino Unido",
+    "motor": "Mercedes",
+    "pilotos": [
+      19,
+      20
+    ]
+  },
+  {
+    "nombre": "Cadillac",
+    "pais": "Estados Unidos",
+    "motor": "Ferrari",
+    "pilotos": [
+      21,
+      22
+    ]
+  }
+]

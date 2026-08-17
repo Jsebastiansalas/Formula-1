@@ -1,0 +1,29 @@
+# Compilados de Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven
+formula_1/target/
+**/target/
+
+# Historial de resultados (generado en runtime)
+historial/
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+apache-maven-3.9.16/
