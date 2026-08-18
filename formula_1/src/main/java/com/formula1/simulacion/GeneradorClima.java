@@ -2,16 +2,30 @@ package com.formula1.simulacion;
 
 import java.util.Random;
 
+/**
+ * Generador de condiciones climaticas realistas para cada circuito.
+ * Asigna un perfil climatico (desertico, tropical, templado, lluvioso, variable)
+ * segun la ubicacion geografica del circuito, y genera el clima con probabilidades
+ * ponderadas acordes a la region.
+ */
 public class GeneradorClima {
     private static final Random random = new Random();
 
-    // Probabilidades de clima según la región/época del circuito
+    /**
+     * Enum interno que define perfiles climaticos con probabilidades para cada tipo de clima.
+     * Cada perfil tiene probabilidades que suman 1.0 para seco, lluvioso y extremo.
+     */
     public enum PerfilClimatico {
-        DESERTICO(0.95, 0.04, 0.01),        // Bahréin, Arabia Saudita, Abu Dhabi
-        TROPICAL(0.65, 0.25, 0.10),         // Singapur, Miami, Brasil
-        TEMPLADO(0.75, 0.20, 0.05),         // Europa (mayoría)
-        LLUVIOSO(0.55, 0.35, 0.10),         // Reino Unido, Bélgica, Países Bajos
-        VARIABLE(0.70, 0.25, 0.05);         // Resto
+        /** Circuitos en desierto: casi siempre seco (Bahrain, Arabia Saudita, Abu Dhabi) */
+        DESERTICO(0.95, 0.04, 0.01),
+        /** Circuitos tropicales: alta humedad y lluvias frecuentes (Singapur, Miami, Brasil) */
+        TROPICAL(0.65, 0.25, 0.10),
+        /** Circuitos europeos: clima estable con lluvias ocasionales */
+        TEMPLADO(0.75, 0.20, 0.05),
+        /** Circuitos con alta probabilidad de lluvia (Silverstone, Spa, Zandvoort) */
+        LLUVIOSO(0.55, 0.35, 0.10),
+        /** Perfil por defecto para circuitos no clasificados */
+        VARIABLE(0.70, 0.25, 0.05);
 
         private final double probSeco;
         private final double probLluvioso;
@@ -35,7 +49,11 @@ public class GeneradorClima {
         }
     }
 
-    // Asigna perfil climático según el nombre del circuito
+    /**
+     * Genera el clima para un circuito basado en su perfil geografico.
+     * @param nombreCircuito nombre del circuito (se usa para determinar el perfil)
+     * @return clima generado aleatoriamente con probabilidades ponderadas
+     */
     public static Clima generarClimaPorCircuito(String nombreCircuito) {
         PerfilClimatico perfil = obtenerPerfilClimatico(nombreCircuito);
         return perfil.generarClima();

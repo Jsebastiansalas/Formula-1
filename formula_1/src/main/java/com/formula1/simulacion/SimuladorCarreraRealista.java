@@ -12,19 +12,31 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Simulador mejorado de carreras con datos reales y eventos dinámicos
+ * Simulador avanzado de carreras con datos reales y eventos dinamicos.
+ * A diferencia de SimuladorClasificacion (que calcula un solo tiempo por piloto),
+ * este simulador ejecuta la carrera vuelta a vuelta, generando:
+ * - Cambios de clima durante la carrera
+ * - Adelantamientos entre pilotos adyacentes
+ * - Eventos por vuelta (accidentes, fallos, penalizaciones)
+ * - Vuelta rapida y estadisticas detalladas
+ * Se usa desde PantallaSimulacionMejorada para ofrecer una experiencia mas inmersiva.
  */
 public class SimuladorCarreraRealista {
     private Random random;
     private GestorPilotos gestorPilotos;
     private GestorEquipos gestorEquipos;
 
-    // Estadísticas de la carrera
+    /** Contador de cambios de clima durante la carrera */
     private int cambiasClimaEnCarrera;
+    /** Lista de eventos importantes ocurridos (para resumen post-carrera) */
     private List<String> eventosImportantes;
+    /** Total de adelantamientos ocurridos en la carrera */
     private int totalAdelantamientos;
+    /** Vuelta en la que se registro la vuelta mas rapida */
     private int vueltaMasRapida;
+    /** Piloto que registro la vuelta mas rapida */
     private String pilotoVueltaRapida;
+    /** Tiempo de la vuelta mas rapida en segundos */
     private double tiempoVueltaRapida;
 
     public SimuladorCarreraRealista() {
@@ -35,7 +47,11 @@ public class SimuladorCarreraRealista {
     }
 
     /**
-     * Simula una carrera completa con eventos dinámicos
+     * Simula una carrera completa vuelta a vuelta con eventos dinamicos.
+     * Genera clima variable, adelantamientos y eventos aleatorios por vuelta.
+     * @param gestorTemporada gestor de temporada para obtener el circuito actual
+     * @param climaInicial clima al inicio de la carrera
+     * @return resultado detallado con clasificacion, estadisticas y eventos
      */
     public ResultadoCarreraDetallado simularCarreraCompleta(GestorTemporada gestorTemporada, Clima climaInicial) {
         Circuito circuito = gestorTemporada.getSiguienteCircuito();

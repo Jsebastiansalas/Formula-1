@@ -19,8 +19,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * Gestiona la persistencia del historial de resultados de carreras.
+ * Guarda y carga sesiones desde un archivo JSON (historial/resultados.json).
+ * Al instanciarse, carga automaticamente el historial de ejecuciones anteriores.
+ * Permite guardar nuevas sesiones, listar el historial y comparar tiempos de pole.
+ */
 public class HistorialResultados {
+    /** Ruta al archivo de persistencia del historial */
     private static final String RUTA_ARCHIVO = "historial/resultados.json";
+    /** Lista de todas las sesiones guardadas */
     private List<SesionResultado> sesiones;
 
     public HistorialResultados() {
@@ -28,7 +36,12 @@ public class HistorialResultados {
         cargarDesdeArchivo(); // recupera sesiones de ejecuciones anteriores al arrancar
     }
 
-    // Guarda una nueva sesión y persiste todo el historial a disco (RF24)
+    /**
+     * Guarda una nueva sesion de carrera y persiste todo el historial a disco.
+     * @param circuito circuito donde se corrio
+     * @param clima condiciones climaticas
+     * @param clasificacion resultados de la carrera
+     */
     public void guardarSesion(Circuito circuito, Clima clima, List<ResultadoVuelta> clasificacion) {
         String fecha = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         SesionResultado sesion = new SesionResultado(circuito.getNombre(), clima.toString(), fecha, clasificacion);
@@ -66,7 +79,7 @@ public class HistorialResultados {
         }
     }
 
-    // RF25: ver historial completo de sesiones/configuraciones previas
+    /** Lista todo el historial de sesiones en consola */
     public void listarHistorial() {
         if (sesiones.isEmpty()) {
             System.out.println("No hay sesiones guardadas todavía.");
@@ -77,7 +90,7 @@ public class HistorialResultados {
         }
     }
 
-    // RF26: comparar tiempos entre sesiones -> mejor tiempo de pole por cada una
+    /** Compara los mejores tiempos (pole) de todas las sesiones guardadas */
     public void compararMejoresTiempos() {
         if (sesiones.isEmpty()) {
             System.out.println("No hay sesiones para comparar.");

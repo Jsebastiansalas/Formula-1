@@ -13,6 +13,14 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
+
+/**
+ * Pantalla de simulacion avanzada con narracion en vivo.
+ * Ejecuta la carrera en un hilo secundario mostrando comentarios del sistema
+ * Comentarista, cambios de clima durante la carrera, barra de progreso y
+ * clasificacion parcial. Al finalizar permite abrir un panel modal con
+ * estadisticas detalladas (PanelEstadisticasCarrera).
+ */
 import javafx.stage.Stage;
 
 import java.util.List;

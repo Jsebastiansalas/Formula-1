@@ -11,6 +11,14 @@ import javafx.scene.text.FontWeight;
 import com.formula1.modelo.Circuito;
 import com.formula1.simulacion.GestorTemporada;
 
+/**
+ * Pantalla que muestra el calendario completo de la temporada F1 2026.
+ * Cada carrera se muestra con codigo de color segun su estado:
+ * - Verde: carrera ya disputada (completada)
+ * - Rojo: siguiente carrera a disputar
+ * - Gris: carreras pendientes
+ * Muestra numero, nombre del circuito, pais y distancia.
+ */
 public class PantallaCalendario {
     private AppFX app;
     private GestorTemporada gestorTemporada;
@@ -24,7 +32,7 @@ public class PantallaCalendario {
 
     private Scene crearEscena() {
         BorderPane root = new BorderPane();
-        root.setStyle("-fx-background-color: #1a1a1a;");
+        root.getStyleClass().add("root-screen");
 
         // Header
         Label titulo = new Label("📅 CALENDARIO F1 TEMPORADA 2026");
@@ -32,8 +40,7 @@ public class PantallaCalendario {
         titulo.setStyle("-fx-text-fill: #e10600;");
 
         Button btnVolver = new Button("⬅ Volver");
-        btnVolver.setStyle("-fx-background-color: #34495e; -fx-text-fill: white; " +
-                "-fx-font-size: 14px; -fx-padding: 10px 20px; -fx-background-radius: 5;");
+        btnVolver.getStyleClass().add("nav-boton-salir");
         btnVolver.setOnAction(e -> app.volverAlInicio());
 
         HBox header = new HBox(20, btnVolver, titulo);
@@ -62,7 +69,9 @@ public class PantallaCalendario {
         root.setTop(header);
         root.setCenter(scroll);
 
-        return new Scene(root, 1000, 700);
+        Scene scene = new Scene(root, 1000, 700);
+        Estilos.aplicar(scene);
+        return scene;
     }
 
     private HBox crearFilaCarrera(int numero, Circuito circuito, int indice, int carreraActual) {

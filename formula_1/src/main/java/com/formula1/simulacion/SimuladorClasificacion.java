@@ -1,12 +1,21 @@
 package com.formula1.simulacion;
-
-import com.formula1.modelo.Circuito;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
+import com.formula1.gestor.GestorVehiculos;
+import com.formula1.modelo.Circuito;
+import com.formula1.modelo.Piloto;
+import com.formula1.modelo.Vehiculo;
+
+/**
+ * Motor principal de simulacion de carreras de Formula 1.
+ * Calcula tiempos de vuelta basados en velocidad del vehiculo, habilidad del piloto,
+ * condiciones climaticas y tipo de neumatico. Genera eventos aleatorios (accidentes,
+ * fallos mecanicos, penalizaciones) y determina la clasificacion final con puntos.
+ * Soporta dos modos: datos de prueba (22 pilotos hardcodeados) y datos reales (desde JSON).
+ */
 public class SimuladorClasificacion {
     private Random random;
 
@@ -14,7 +23,11 @@ public class SimuladorClasificacion {
         this.random = new Random();
     }
 
-    // Resultado de un piloto en la sesión (mejorado con más datos realistas)
+    /**
+     * Clase interna que representa el resultado de un piloto en una carrera.
+     * Contiene tiempo de vuelta, posicion final, puntos, neumatico usado,
+     * evento ocurrido y estado (finalizado o DNF con razon).
+     */
     public static class ResultadoVuelta {
         private String nombrePiloto;
         private String equipo;
@@ -56,7 +69,12 @@ public class SimuladorClasificacion {
         public void setEvento(EventoCarrera evento) { this.evento = evento; }
         public void setTiempoVueltaSegundos(double tiempo) { this.tiempoVueltaSegundos = tiempo; }
 
-        public void marcarDNF(String razon) {
+    /**
+     * Marca al piloto como DNF (abandono) con una razon especifica.
+     * Pone el tiempo en MAX_VALUE para que quede al final de la clasificacion.
+     * @param razon descripcion de la causa del abandono
+     */
+    public void marcarDNF(String razon) {
             this.dnf = true;
             this.estadoFinal = razon;
             this.puntos = 0;
@@ -79,8 +97,15 @@ public class SimuladorClasificacion {
         }
     }
 
-    // --- DATOS DE PRUEBA (temporal, hasta que exista Vehiculo/Piloto real) ---
-    // nombrePiloto, equipo, velocidadPromedioKmh del vehículo en modo NORMAL, habilidad (0-100)
+    // --- DATOS DE PRUEBA: 22 pilotos reales de la temporada 2026 como respaldo ---
+
+    /**
+     * Simula una carrera usando datos de prueba hardcodeados (22 pilotos F1 2026).
+     * Se usa como respaldo cuando no se han configurado datos reales desde JSON.
+     * @param circuito circuito donde se corre la carrera
+     * @param clima condiciones climaticas
+     * @return lista de resultados ordenados por posicion (1 = ganador)
+     */
     public List<ResultadoVuelta> simularConDatosPrueba(Circuito circuito, Clima clima) {
         List<Object[]> pilotosPrueba = List.of(
                 new Object[]{"Max Verstappen", "Red Bull Racing", 322.0, 98.0},
@@ -146,7 +171,80 @@ public class SimuladorClasificacion {
         return asignarPosicionesYPuntos(ordenarPorTiempo(resultados));
     }
 
-    // Simula eventos aleatorios durante la carrera
+    // --- DATOS REALES: usa Piloto y Vehiculo cargados desde JSON ---
+
+    /**
+     * Simula una carrera usando datos reales de pilotos y vehiculos cargados desde JSON.
+     * Busca el vehiculo de cada piloto por nombre de equipo.
+     * @param circuito circuito donde se corre
+     * @param clima condiciones climaticas
+     * @param pilotos lista de pilotos participantes
+     * @param gestorVehiculos gestor para buscar el vehiculo de cada equipo
+     * @return lista de resultados ordenados por posicion
+     */
+    public List<ResultadoVuelta> simularConDatosReales(Circuito circuito, Clima clima,
+                                                         List<Piloto> pilotos, GestorVehiculos gestorVehiculos) {
+        TipoNeumatico neumaticoOptimo = TipoNeumatico.seleccionarOptimo(clima);
+        List<ResultadoVuelta> resultados = new ArrayList<>();
+
+        for (Piloto piloto : pilotos) {
+            Vehiculo vehiculo = buscarVehiculoDelEquipo(piloto.getEquipo(), gestorVehiculos);
+            if (vehiculo == null) {
+                System.out.println("Sin vehículo para el equipo de " + piloto.getNombre() + ", se omite.");
+                continue;
+            }
+
+            double velocidadPromedio = obtenerVelocidadNormal(vehiculo);
+            double habilidad = piloto.getHabilidad();
+
+            double variacionHabilidad = 0.95 + ((100 - habilidad) / 1000.0);
+            double variacionAleatoria = 0.98 + (random.nextDouble() * 0.04);
+            double velocidadAjustada = velocidadPromedio * variacionAleatoria / variacionHabilidad;
+
+            double tiempo = calcularTiempoVuelta(velocidadAjustada, circuito, clima, neumaticoOptimo);
+
+            ResultadoVuelta resultado = new ResultadoVuelta(piloto.getNombre(), piloto.getEquipo(), tiempo);
+            resultado.setNeumatico(neumaticoOptimo);
+
+            EventoCarrera evento = simularEventoAleatorio(clima, habilidad);
+            resultado.setEvento(evento);
+
+            if (evento.esAbandonoDNF()) {
+                resultado.marcarDNF(evento.getDescripcion());
+            } else if (evento != EventoCarrera.NORMAL) {
+                resultado.setTiempoVueltaSegundos(tiempo + evento.getPenalizacionSegundos());
+            }
+
+            resultados.add(resultado);
+        }
+
+        return asignarPosicionesYPuntos(ordenarPorTiempo(resultados));
+    }
+
+    private Vehiculo buscarVehiculoDelEquipo(String nombreEquipo, GestorVehiculos gestorVehiculos) {
+        for (Vehiculo v : gestorVehiculos.listarVehiculos()) {
+            if (v.getEquipo() != null && v.getEquipo().equals(nombreEquipo)) {
+                return v;
+            }
+        }
+        return null;
+    }
+
+    private double obtenerVelocidadNormal(Vehiculo vehiculo) {
+        Vehiculo.RendimientoModo modoNormal = vehiculo.getRendimiento().get("conduccion_normal");
+        if (modoNormal == null) {
+            return vehiculo.getVelocidadMaximaKmh() * 0.9; // fallback si falta ese modo
+        }
+        return modoNormal.getVelocidadPromedioKmh();
+    }
+
+    /**
+     * Simula eventos aleatorios durante la carrera basados en clima y habilidad.
+     * Mayor probabilidad de incidente en peor clima y menor habilidad del piloto.
+     * @param clima condiciones climaticas (afecta probabilidad base)
+     * @param habilidad habilidad del piloto (reduce probabilidad hasta 50%)
+     * @return el evento ocurrido (NORMAL si no hubo incidente)
+     */
     private EventoCarrera simularEventoAleatorio(Clima clima, double habilidad) {
         // Probabilidad base de incidente (más alta en peor clima y menor habilidad)
         double probabilidadIncidente = switch (clima) {
@@ -198,8 +296,17 @@ public class SimuladorClasificacion {
         }
     }
 
-    // Cálculo de tiempo de vuelta (RF21): distancia del circuito / velocidad,
-    // ajustado por clima y tipo de neumático
+    /**
+     * Calcula el tiempo de vuelta en segundos.
+     * Formula: tiempo = (distancia / velocidadAjustada) * 3600
+     * La velocidad se ajusta por factores de clima y neumatico.
+     * Penalizacion extra del 15% si el neumatico no es apropiado para el clima.
+     * @param velocidadPromedioKmh velocidad base del vehiculo
+     * @param circuito circuito (para obtener longitud)
+     * @param clima condiciones climaticas
+     * @param neumatico tipo de neumatico equipado
+     * @return tiempo de vuelta en segundos
+     */
     public double calcularTiempoVuelta(double velocidadPromedioKmh, Circuito circuito,
                                        Clima clima, TipoNeumatico neumatico) {
         // Factor por clima
@@ -222,7 +329,12 @@ public class SimuladorClasificacion {
         return horas * 3600; // convertir horas a segundos
     }
 
-    // Ordena resultados de menor a mayor tiempo -> el primero es la pole (RF22, RF23)
+    /**
+     * Ordena los resultados de menor a mayor tiempo (el primero es el ganador).
+     * Los pilotos con DNF (tiempo MAX_VALUE) quedan automaticamente al final.
+     * @param resultados lista de resultados sin ordenar
+     * @return nueva lista ordenada por tiempo ascendente
+     */
     public List<ResultadoVuelta> ordenarPorTiempo(List<ResultadoVuelta> resultados) {
         List<ResultadoVuelta> copia = new ArrayList<>(resultados);
         copia.sort(Comparator.comparingDouble(ResultadoVuelta::getTiempoVueltaSegundos));

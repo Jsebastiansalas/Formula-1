@@ -2,14 +2,23 @@ package com.formula1.simulacion;
 
 import java.util.*;
 
+/**
+ * Tabla de clasificacion del campeonato mundial de pilotos.
+ * Acumula puntos carrera a carrera y genera la clasificacion ordenada.
+ * El desempate se resuelve por mejor posicion obtenida en la temporada.
+ */
 public class TablaCampeonato {
+    /** Mapa de pilotos en el campeonato, indexado por nombre */
     private Map<String, PilotoCampeonato> pilotos;
 
     public TablaCampeonato() {
         this.pilotos = new HashMap<>();
     }
 
-    // Clase interna para almacenar datos de un piloto en el campeonato
+    /**
+     * Clase interna que almacena las estadisticas acumuladas de un piloto en el campeonato.
+     * Registra puntos totales, carreras completadas, puntos por carrera y mejor posicion.
+     */
     public static class PilotoCampeonato {
         private String nombre;
         private String equipo;
@@ -51,7 +60,11 @@ public class TablaCampeonato {
         }
     }
 
-    // Registra los resultados de una carrera
+    /**
+     * Registra los resultados de una carrera en la tabla de campeonato.
+     * Crea pilotos nuevos si es su primera carrera, y acumula puntos.
+     * @param resultados clasificacion completa de la carrera
+     */
     public void registrarCarrera(List<SimuladorClasificacion.ResultadoVuelta> resultados) {
         for (SimuladorClasificacion.ResultadoVuelta resultado : resultados) {
             String nombrePiloto = resultado.getNombrePiloto();
@@ -67,7 +80,11 @@ public class TablaCampeonato {
         }
     }
 
-    // Obtiene la tabla ordenada por puntos (mayor a menor)
+    /**
+     * Obtiene la clasificacion del campeonato ordenada por puntos (mayor a menor).
+     * En caso de empate, se desempata por mejor posicion obtenida.
+     * @return lista ordenada de pilotos del campeonato
+     */
     public List<PilotoCampeonato> obtenerClasificacion() {
         List<PilotoCampeonato> clasificacion = new ArrayList<>(pilotos.values());
         clasificacion.sort((p1, p2) -> {
@@ -82,7 +99,7 @@ public class TablaCampeonato {
         return clasificacion;
     }
 
-    // Muestra la tabla de campeonato en consola
+    /** Imprime la tabla de campeonato formateada en consola */
     public void mostrarClasificacion() {
         List<PilotoCampeonato> clasificacion = obtenerClasificacion();
         System.out.println("\n╔════════════════════════════════════════════════════════════════╗");
@@ -106,13 +123,16 @@ public class TablaCampeonato {
         System.out.println();
     }
 
-    // Obtiene el campeón actual
+    /**
+     * Obtiene al campeon actual (piloto con mas puntos).
+     * @return el piloto lider o null si no hay pilotos registrados
+     */
     public PilotoCampeonato obtenerCampeon() {
         List<PilotoCampeonato> clasificacion = obtenerClasificacion();
         return clasificacion.isEmpty() ? null : clasificacion.get(0);
     }
 
-    // Limpia todos los datos (para empezar nueva temporada)
+    /** Reinicia la tabla para comenzar una nueva temporada desde cero */
     public void reiniciar() {
         pilotos.clear();
     }

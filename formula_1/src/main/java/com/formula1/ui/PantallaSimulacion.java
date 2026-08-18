@@ -13,6 +13,14 @@ import com.formula1.simulacion.GestorTemporada;
 import com.formula1.simulacion.SimuladorClasificacion;
 import com.formula1.simulacion.TablaCampeonato;
 
+/**
+ * Pantalla de simulacion de una carrera individual.
+ * Muestra informacion del siguiente GP (numero, circuito, pais, distancia),
+ * permite ejecutar la simulacion y presenta los resultados con clasificacion
+ * coloreada por posicion, estadisticas de la carrera y opciones para ver
+ * campeonato o simular la siguiente carrera.
+ */
+
 import java.util.List;
 
 public class PantallaSimulacion {
@@ -33,7 +41,7 @@ public class PantallaSimulacion {
 
     private Scene crearEscena() {
         BorderPane root = new BorderPane();
-        root.setStyle("-fx-background-color: #1a1a1a;");
+        root.getStyleClass().add("root-screen");
 
         // Header
         Label titulo = new Label("SIMULACIÓN DE CARRERA");
@@ -41,8 +49,7 @@ public class PantallaSimulacion {
         titulo.setStyle("-fx-text-fill: #e10600;");
 
         Button btnVolver = new Button("⬅ Volver");
-        btnVolver.setStyle("-fx-background-color: #34495e; -fx-text-fill: white; " +
-                "-fx-font-size: 14px; -fx-padding: 10px 20px; -fx-background-radius: 5;");
+        btnVolver.getStyleClass().add("nav-boton-salir");
         btnVolver.setOnAction(e -> app.volverAlInicio());
 
         HBox header = new HBox(20, btnVolver, titulo);
@@ -57,7 +64,9 @@ public class PantallaSimulacion {
             centro.setAlignment(Pos.CENTER);
             root.setTop(header);
             root.setCenter(centro);
-            return new Scene(root, 1000, 700);
+            Scene scene = new Scene(root, 1000, 700);
+            Estilos.aplicar(scene);
+            return scene;
         }
 
         // Información de la siguiente carrera
@@ -65,8 +74,7 @@ public class PantallaSimulacion {
 
         // Botón simular
         Button btnSimular = new Button("🏁 SIMULAR CARRERA");
-        btnSimular.setStyle("-fx-background-color: #e10600; -fx-text-fill: white; " +
-                "-fx-font-size: 20px; -fx-padding: 15px 50px; -fx-background-radius: 10;");
+        btnSimular.getStyleClass().add("boton-cta");
         btnSimular.setOnAction(e -> simularCarrera(root));
 
         VBox centro = new VBox(30, infoCarrera, btnSimular);
@@ -76,7 +84,9 @@ public class PantallaSimulacion {
         root.setTop(header);
         root.setCenter(centro);
 
-        return new Scene(root, 1000, 700);
+        Scene scene = new Scene(root, 1000, 700);
+        Estilos.aplicar(scene);
+        return scene;
     }
 
     private VBox crearInfoCarrera() {
@@ -157,24 +167,21 @@ public class PantallaSimulacion {
 
         // Botones
         Button btnVerCampeonato = new Button("Ver Tabla de Campeonato");
-        btnVerCampeonato.setStyle("-fx-background-color: #27ae60; -fx-text-fill: white; " +
-                "-fx-font-size: 16px; -fx-padding: 10px 30px; -fx-background-radius: 5;");
+        btnVerCampeonato.getStyleClass().add("button");
         btnVerCampeonato.setOnAction(e -> {
             PantallaCampeonato pantalla = new PantallaCampeonato(app, gestorTemporada);
             app.getPrimaryStage().setScene(pantalla.getScene());
         });
 
         Button btnOtraCarrera = new Button("Simular Otra Carrera");
-        btnOtraCarrera.setStyle("-fx-background-color: #e10600; -fx-text-fill: white; " +
-                "-fx-font-size: 16px; -fx-padding: 10px 30px; -fx-background-radius: 5;");
+        btnOtraCarrera.getStyleClass().add("boton-cta");
         btnOtraCarrera.setOnAction(e -> {
             PantallaSimulacion nueva = new PantallaSimulacion(app, gestorTemporada, simulador, historial);
             app.getPrimaryStage().setScene(nueva.getScene());
         });
 
         Button btnVolver = new Button("Volver al Menú");
-        btnVolver.setStyle("-fx-background-color: #34495e; -fx-text-fill: white; " +
-                "-fx-font-size: 16px; -fx-padding: 10px 30px; -fx-background-radius: 5;");
+        btnVolver.getStyleClass().add("nav-boton-salir");
         btnVolver.setOnAction(e -> app.volverAlInicio());
 
         HBox botones = new HBox(15, btnVerCampeonato, btnOtraCarrera, btnVolver);

@@ -2,6 +2,7 @@ package com.formula1.ui;
 
 import com.formula1.almacenamiento.HistorialResultados;
 import com.formula1.gestor.GestorCircuitos;
+import com.formula1.gestor.GestorEquipos;
 import com.formula1.gestor.GestorPilotos;
 import com.formula1.gestor.GestorVehiculos;
 import com.formula1.modelo.Circuito;
@@ -23,13 +24,30 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ * Clase principal de la aplicacion JavaFX.
+ * Inicializa todos los componentes del sistema (gestores, simulador, historial),
+ * construye la pantalla de inicio con sidebar de navegacion y hero section,
+ * y gestiona la navegacion entre las diferentes pantallas de la aplicacion.
+ * Actua como controlador central que conecta la UI con la logica de negocio.
+ */
 public class AppFX extends Application {
+
+    /** Gestor de circuitos - carga y CRUD de los 24 circuitos */
     private GestorCircuitos gestorCircuitos;
+    /** Gestor de pilotos - carga y CRUD de los 22 pilotos */
     private GestorPilotos gestorPilotos;
+    /** Gestor de equipos - CRUD con persistencia a disco */
+    private GestorEquipos gestorEquipos;
+    /** Gestor de vehiculos - carga y CRUD de los monoplazas */
     private GestorVehiculos gestorVehiculos;
+    /** Gestor de temporada - controla el calendario y la progresion */
     private GestorTemporada gestorTemporada;
+    /** Motor de simulacion de carreras */
     private SimuladorClasificacion simulador;
+    /** Historial de resultados con persistencia JSON */
     private HistorialResultados historial;
+    /** Ventana principal de la aplicacion */
     private Stage primaryStage;
 
     @Override
@@ -52,10 +70,12 @@ public class AppFX extends Application {
         gestorCircuitos.cargarDesdeJSON("data/circuitos.json");
 
         gestorPilotos = new GestorPilotos();
+        gestorEquipos = new GestorEquipos();
         gestorVehiculos = new GestorVehiculos();
 
         gestorTemporada = new GestorTemporada(2026);
         gestorTemporada.cargarCalendario(gestorCircuitos);
+        gestorTemporada.configurarDatosReales(gestorPilotos, gestorVehiculos);
 
         simulador = new SimuladorClasificacion();
         historial = new HistorialResultados();
@@ -65,7 +85,6 @@ public class AppFX extends Application {
         BorderPane root = new BorderPane();
         root.getStyleClass().add("root-screen");
 
-        // Franja superior tipo bandera a cuadros
         Region franja = new Region();
         franja.getStyleClass().add("franja-cuadros");
         franja.setPrefHeight(6);
@@ -82,7 +101,6 @@ public class AppFX extends Application {
         Scene scene = new Scene(root);
         Estilos.aplicar(scene);
 
-        // Animación de entrada suave
         FadeTransition fade = new FadeTransition(Duration.millis(500), root);
         fade.setFromValue(0);
         fade.setToValue(1);
@@ -120,11 +138,8 @@ public class AppFX extends Application {
         Button btnHistorial = crearBotonNav("📊  Historial de Carreras");
         btnHistorial.setOnAction(e -> mostrarHistorial());
 
-        Button btnAdministracion = crearBotonNav("⚙️  Administración");
-        btnAdministracion.setOnAction(e -> mostrarAdministracion());
-
         VBox navBox = new VBox(2, btnSimularCarrera, btnSimularTemporada,
-                btnVerCalendario, btnVerCampeonato, btnHistorial, btnAdministracion);
+                btnVerCalendario, btnVerCampeonato, btnHistorial);
 
         Region espaciador = new Region();
         VBox.setVgrow(espaciador, Priority.ALWAYS);
@@ -170,20 +185,21 @@ public class AppFX extends Application {
     }
 
     private HBox crearTarjetasResumen() {
-    HBox tarjetas = new HBox(20);
-    tarjetas.setAlignment(Pos.CENTER);
+        HBox tarjetas = new HBox(20);
+        tarjetas.setAlignment(Pos.CENTER);
 
-    Circuito proximo = gestorTemporada.getSiguienteCircuito();
-    String nombreCircuito = proximo != null ? proximo.getNombre() : "Temporada finalizada";
-    String paisCircuito = proximo != null ? proximo.getPais() : "-";
+        Circuito proximo = gestorTemporada.getSiguienteCircuito();
+        String nombreCircuito = proximo != null ? proximo.getNombre() : "Temporada finalizada";
+        String paisCircuito = proximo != null ? proximo.getPais() : "-";
 
-    tarjetas.getChildren().addAll(
-            crearTarjeta("PRÓXIMA CARRERA", nombreCircuito, paisCircuito),
-            crearTarjeta("CARRERAS TOTALES", "24", "Calendario 2026"),
-            crearTarjeta("EQUIPOS", "11", "22 pilotos en pista")
-    );
-    return tarjetas;
-}
+        tarjetas.getChildren().addAll(
+                crearTarjeta("PRÓXIMA CARRERA", nombreCircuito, paisCircuito),
+                crearTarjeta("CARRERAS TOTALES", "24", "Calendario 2026"),
+                crearTarjeta("EQUIPOS", "11", "22 pilotos en pista")
+        );
+        return tarjetas;
+    }
+
     private VBox crearTarjeta(String etiqueta, String valor, String detalle) {
         VBox tarjeta = new VBox(8);
         tarjeta.getStyleClass().add("tarjeta");
@@ -232,26 +248,6 @@ public class AppFX extends Application {
     private void mostrarHistorial() {
         PantallaHistorial pantallaHistorial = new PantallaHistorial(this, gestorTemporada);
         primaryStage.setScene(pantallaHistorial.getScene());
-    }
-
-    public void mostrarAdministracion() {
-        PantallaAdministracion pantallaAdmin = new PantallaAdministracion(this);
-        primaryStage.setScene(pantallaAdmin.getScene());
-    }
-
-    public void mostrarGestionCircuitos() {
-        PantallaGestionCircuitos pantallaGestion = new PantallaGestionCircuitos(this, gestorCircuitos);
-        primaryStage.setScene(pantallaGestion.getScene());
-    }
-
-    public void mostrarGestionPilotos() {
-        PantallaGestionPilotos pantallaGestion = new PantallaGestionPilotos(this, gestorPilotos);
-        primaryStage.setScene(pantallaGestion.getScene());
-    }
-
-    public void mostrarGestionVehiculos() {
-        PantallaGestionVehiculos pantallaGestion = new PantallaGestionVehiculos(this, gestorVehiculos);
-        primaryStage.setScene(pantallaGestion.getScene());
     }
 
     public void volverAlInicio() {

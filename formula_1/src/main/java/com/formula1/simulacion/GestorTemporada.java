@@ -1,18 +1,40 @@
 package com.formula1.simulacion;
 
-import com.formula1.gestor.GestorCircuitos;
-import com.formula1.modelo.Circuito;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestorTemporada {
-    private List<Circuito> calendario;
-    private int carreraActual;
-    private TablaCampeonato campeonato;
-    private List<ResultadoCarrera> historialCarreras;
-    private int temporada;
+import com.formula1.gestor.GestorCircuitos;
+import com.formula1.gestor.GestorPilotos;
+import com.formula1.gestor.GestorVehiculos;
+import com.formula1.modelo.Circuito;
 
+/**
+ * Gestor principal de la temporada de Formula 1.
+ * Administra el calendario de 24 carreras, controla la progresion de la temporada,
+ * simula carreras secuencialmente, acumula puntos en la tabla de campeonato
+ * y almacena el historial de resultados de cada carrera disputada.
+ */
+public class GestorTemporada {
+
+    /** Calendario ordenado de circuitos para la temporada */
+    private List<Circuito> calendario;
+    /** Indice de la siguiente carrera a simular (0-based) */
+    private int carreraActual;
+    /** Tabla de clasificacion del mundial de pilotos */
+    private TablaCampeonato campeonato;
+    /** Historial de resultados de todas las carreras disputadas */
+    private List<ResultadoCarrera> historialCarreras;
+    /** Anio de la temporada */
+    private int temporada;
+    /** Gestor de pilotos reales (nullable - si es null se usan datos de prueba) */
+    private GestorPilotos gestorPilotos;
+    /** Gestor de vehiculos reales (nullable - si es null se usan datos de prueba) */
+    private GestorVehiculos gestorVehiculos;
+
+    /**
+     * Crea un gestor de temporada para un anio especifico.
+     * @param temporada anio de la temporada (ej: 2026)
+     */
     public GestorTemporada(int temporada) {
         this.temporada = temporada;
         this.calendario = new ArrayList<>();
@@ -21,7 +43,22 @@ public class GestorTemporada {
         this.historialCarreras = new ArrayList<>();
     }
 
-    // Clase interna para almacenar el resultado completo de una carrera
+    /**
+     * Conecta los gestores de datos reales para la simulacion.
+     * Si no se llama, el simulador usara datos de prueba hardcodeados.
+     * @param gestorPilotos gestor con los 22 pilotos cargados desde JSON
+     * @param gestorVehiculos gestor con los vehiculos cargados desde JSON
+     */
+    public void configurarDatosReales(GestorPilotos gestorPilotos, GestorVehiculos gestorVehiculos) {
+        this.gestorPilotos = gestorPilotos;
+        this.gestorVehiculos = gestorVehiculos;
+    }
+
+    /**
+     * Clase interna que almacena el resultado completo de una carrera.
+     * Calcula automaticamente estadisticas: DNFs, accidentes, fallos mecanicos,
+     * penalizaciones y determina el ganador.
+     */
     public static class ResultadoCarrera {
         private int numeroCarrera;
         private Circuito circuito;
@@ -108,7 +145,11 @@ public class GestorTemporada {
         }
     }
 
-    // Carga el calendario completo desde el gestor de circuitos
+    /**
+     * Carga el calendario completo de 24 carreras desde el gestor de circuitos.
+     * Busca cada circuito por nombre exacto segun el orden oficial F1 2026.
+     * @param gestorCircuitos gestor con los circuitos cargados
+     */
     public void cargarCalendario(GestorCircuitos gestorCircuitos) {
         // Orden del calendario F1 2026 (24 carreras) - NOMBRES EXACTOS DEL JSON
         String[] ordenCircuitos = {
@@ -150,7 +191,12 @@ public class GestorTemporada {
         System.out.println("Calendario cargado: " + calendario.size() + " carreras.");
     }
 
-    // Simula la siguiente carrera del calendario
+    /**
+     * Simula la siguiente carrera del calendario.
+     * Genera clima realista, ejecuta la simulacion, registra puntos y guarda resultado.
+     * @param simulador motor de simulacion a utilizar
+     * @return resultado de la carrera o null si la temporada ya termino
+     */
     public ResultadoCarrera simularSiguienteCarrera(SimuladorClasificacion simulador) {
         if (carreraActual >= calendario.size()) {
             System.out.println("¡La temporada ha finalizado!");
@@ -170,9 +216,13 @@ public class GestorTemporada {
         System.out.println("Distancia: " + circuito.getLongitudKm() + " km x " + circuito.getVueltas() + " vueltas");
         System.out.println();
 
-        // Simular
-        List<SimuladorClasificacion.ResultadoVuelta> clasificacion =
-                simulador.simularConDatosPrueba(circuito, clima);
+        // Simular (datos reales si ya se configuraron; si no, datos de prueba como respaldo)
+        List<SimuladorClasificacion.ResultadoVuelta> clasificacion;
+        if (gestorPilotos != null && gestorVehiculos != null) {
+            clasificacion = simulador.simularConDatosReales(circuito, clima, gestorPilotos.listarPilotos(), gestorVehiculos);
+        } else {
+            clasificacion = simulador.simularConDatosPrueba(circuito, clima);
+        }
 
         // Registrar en campeonato
         campeonato.registrarCarrera(clasificacion);
@@ -185,7 +235,10 @@ public class GestorTemporada {
         return resultado;
     }
 
-    // Simula toda la temporada de golpe
+    /**
+     * Simula todas las carreras restantes de la temporada de golpe.
+     * @param simulador motor de simulacion a utilizar
+     */
     public void simularTemporadaCompleta(SimuladorClasificacion simulador) {
         System.out.println("\n╔═══════════════════════════════════════════════════════════════╗");
         System.out.println("║          SIMULANDO TEMPORADA COMPLETA " + temporada + "                 ║");
@@ -203,7 +256,7 @@ public class GestorTemporada {
         System.out.println("\n🏁 ¡TEMPORADA FINALIZADA! 🏁\n");
     }
 
-    // Verifica si la temporada ha terminado
+    /** @return true si todas las carreras del calendario fueron disputadas */
     public boolean temporadaFinalizada() {
         return carreraActual >= calendario.size();
     }
@@ -215,7 +268,7 @@ public class GestorTemporada {
     public List<ResultadoCarrera> getHistorialCarreras() { return historialCarreras; }
     public int getTemporada() { return temporada; }
 
-    // Obtiene el circuito de la siguiente carrera
+    /** @return el circuito de la siguiente carrera, o null si la temporada termino */
     public Circuito getSiguienteCircuito() {
         if (carreraActual < calendario.size()) {
             return calendario.get(carreraActual);
@@ -223,7 +276,7 @@ public class GestorTemporada {
         return null;
     }
 
-    // Muestra el calendario completo
+    /** Imprime el calendario completo con indicadores de progreso (completado/siguiente/pendiente) */
     public void mostrarCalendario() {
         System.out.println("\n╔═══════════════════════════════════════════════════════════════╗");
         System.out.println("║             CALENDARIO F1 TEMPORADA " + temporada + "                    ║");
@@ -236,7 +289,7 @@ public class GestorTemporada {
         System.out.println();
     }
 
-    // Muestra resumen de la temporada
+    /** Imprime un resumen de la temporada con las ultimas 5 carreras disputadas */
     public void mostrarResumenTemporada() {
         System.out.println("\n╔═══════════════════════════════════════════════════════════════╗");
         System.out.println("║              RESUMEN TEMPORADA " + temporada + "                         ║");

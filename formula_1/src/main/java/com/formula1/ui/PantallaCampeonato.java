@@ -13,6 +13,16 @@ import com.formula1.simulacion.TablaCampeonato;
 
 import java.util.List;
 
+/**
+ * Pantalla que muestra la tabla de clasificacion del campeonato mundial de pilotos.
+ * Presenta posicion, nombre, equipo, puntos totales, carreras completadas y mejor posicion.
+ * Las filas se colorean segun la posicion:
+ * - Dorado: 1er lugar
+ * - Plateado: 2do lugar
+ * - Bronce: 3er lugar
+ * - Verde: zona de puntos (4-10)
+ * - Gris: fuera de puntos (11+)
+ */
 public class PantallaCampeonato {
     private AppFX app;
     private GestorTemporada gestorTemporada;
@@ -26,7 +36,7 @@ public class PantallaCampeonato {
 
     private Scene crearEscena() {
         BorderPane root = new BorderPane();
-        root.setStyle("-fx-background-color: #1a1a1a;");
+        root.getStyleClass().add("root-screen");
 
         // Header
         Label titulo = new Label("🏅 TABLA DE CAMPEONATO 2026");
@@ -34,8 +44,7 @@ public class PantallaCampeonato {
         titulo.setStyle("-fx-text-fill: #e10600;");
 
         Button btnVolver = new Button("⬅ Volver");
-        btnVolver.setStyle("-fx-background-color: #34495e; -fx-text-fill: white; " +
-                "-fx-font-size: 14px; -fx-padding: 10px 20px; -fx-background-radius: 5;");
+        btnVolver.getStyleClass().add("nav-boton-salir");
         btnVolver.setOnAction(e -> app.volverAlInicio());
 
         HBox header = new HBox(20, btnVolver, titulo);
@@ -76,7 +85,9 @@ public class PantallaCampeonato {
         root.setTop(header);
         root.setCenter(scroll);
 
-        return new Scene(root, 1000, 700);
+        Scene scene = new Scene(root, 1000, 700);
+        Estilos.aplicar(scene);
+        return scene;
     }
 
     private HBox crearEncabezado() {

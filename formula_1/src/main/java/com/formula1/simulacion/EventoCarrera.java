@@ -1,5 +1,12 @@
 package com.formula1.simulacion;
 
+/**
+ * Enum que define todos los eventos posibles durante una carrera de F1.
+ * Cada evento tiene una descripcion, una penalizacion de tiempo en segundos
+ * y un indicador de si causa abandono (DNF - Did Not Finish).
+ * Los eventos con DNF hacen que el piloto abandone la carrera.
+ * Los eventos sin DNF agregan tiempo de penalizacion al resultado final.
+ */
 public enum EventoCarrera {
     // Eventos que pueden ocurrir durante una carrera
     NORMAL("Carrera sin incidentes", 0, false),
@@ -14,8 +21,11 @@ public enum EventoCarrera {
     PENALIZACION_10S("Penalización 10 segundos", 10.0, false),
     SALIDA_PISTA("Salida de pista - Pérdida de tiempo", 3.0, false);
 
+    /** Descripcion legible del evento */
     private final String descripcion;
+    /** Segundos de penalizacion que se suman al tiempo (0 para eventos DNF) */
     private final double penalizacionSegundos;
+    /** Si es true, el piloto abandona la carrera (Did Not Finish) */
     private final boolean esAbandonoDNF;
 
     EventoCarrera(String descripcion, double penalizacionSegundos, boolean esAbandonoDNF) {

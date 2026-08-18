@@ -6,12 +6,15 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Sistema de comentaristas para narrar las carreras de F1 en tiempo real
+ * Sistema de comentaristas que genera narracion en espanol para las carreras de F1.
+ * Proporciona frases aleatorias para cada tipo de evento: inicio de carrera, clima,
+ * accidentes, adelantamientos, victorias, podio y cambios de clima.
+ * Todos los metodos son estaticos y seleccionan frases al azar de arrays predefinidos.
  */
 public class Comentarista {
     private static final Random random = new Random();
 
-    // Frases de inicio de carrera
+    /** Frases de inicio de carrera (se formatean con nombre del circuito y clima) */
     private static final String[] INICIO_CARRERA = {
         "¡Buenos días a todos los aficionados! Estamos a punto de presenciar una carrera emocionante en %s.",
         "¡Bienvenidos a %s! El clima está %s y los pilotos están listos en la parrilla.",
@@ -25,7 +28,7 @@ public class Comentarista {
         "¡La tensión es palpable en %s! Todos los ojos están en la pole position."
     };
 
-    // Comentarios sobre el clima
+    /** Comentarios sobre condiciones de pista seca */
     private static final String[] CLIMA_SECO = {
         "Tenemos un día perfecto para las carreras, cielo despejado y pista seca.",
         "Condiciones ideales hoy, esto favorecerá las altas velocidades.",

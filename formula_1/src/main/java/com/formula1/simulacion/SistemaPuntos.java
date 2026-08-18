@@ -3,8 +3,14 @@ package com.formula1.simulacion;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Sistema de puntos oficial de Formula 1 para la temporada 2026.
+ * Distribuye puntos a los primeros 10 clasificados: 25-18-15-12-10-8-6-4-2-1.
+ * Las posiciones 11 a 22 no reciben puntos.
+ * Clase utilitaria con metodos estaticos (no requiere instanciacion).
+ */
 public class SistemaPuntos {
-    // Sistema de puntos oficial de F1 2026
+    /** Mapa de posicion -> puntos (solo posiciones 1-10) */
     private static final Map<Integer, Integer> PUNTOS_POR_POSICION = new HashMap<>();
 
     static {
@@ -21,22 +27,26 @@ public class SistemaPuntos {
         // Posiciones 11-22 no puntúan (0 puntos)
     }
 
-    // Obtiene los puntos correspondientes a una posición
+    /**
+     * Obtiene los puntos correspondientes a una posicion.
+     * @param posicion posicion final en la carrera (1-22)
+     * @return puntos otorgados (0 si la posicion no puntua)
+     */
     public static int obtenerPuntos(int posicion) {
         return PUNTOS_POR_POSICION.getOrDefault(posicion, 0);
     }
 
-    // Verifica si una posición puntúa
+    /** @return true si la posicion esta entre 1 y 10 (zona de puntos) */
     public static boolean esPosicionConPuntos(int posicion) {
         return posicion >= 1 && posicion <= 10;
     }
 
-    // Obtiene el máximo de puntos posibles en una carrera
+    /** @return 25, el maximo de puntos posibles en una carrera (victoria) */
     public static int getPuntosMaximos() {
         return 25;
     }
 
-    // Para debug/visualización: muestra la tabla de puntos
+    /** Imprime la tabla de puntos en consola (uso para depuracion) */
     public static void mostrarTablaPuntos() {
         System.out.println("=== Sistema de Puntos F1 ===");
         for (int i = 1; i <= 10; i++) {

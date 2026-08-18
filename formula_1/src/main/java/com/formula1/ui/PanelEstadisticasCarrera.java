@@ -13,7 +13,11 @@ import javafx.scene.layout.VBox;
 import java.util.List;
 
 /**
- * Panel de estadísticas detalladas de una carrera individual
+ * Panel reutilizable que muestra estadisticas detalladas de una carrera individual.
+ * Se presenta como contenido de una ventana modal desde PantallaSimulacionMejorada.
+ * Incluye secciones de: clima (inicial/final/cambios), estadisticas generales,
+ * vuelta rapida, eventos importantes y clasificacion completa con colores.
+ * Extiende VBox para integrarse directamente como nodo JavaFX.
  */
 public class PanelEstadisticasCarrera extends VBox {
 

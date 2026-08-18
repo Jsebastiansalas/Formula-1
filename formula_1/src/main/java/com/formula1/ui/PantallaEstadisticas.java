@@ -18,7 +18,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Pantalla de estadísticas detalladas de la temporada
+ * Pantalla de estadisticas detalladas de la temporada.
+ * Presenta cuatro secciones: estadisticas generales (carreras completadas/pendientes),
+ * top 10 pilotos con puntos, clasificacion por equipos (placeholder),
+ * y resultados por circuito (ganador, clima, DNFs de cada carrera).
  */
 public class PantallaEstadisticas {
     private AppFX app;

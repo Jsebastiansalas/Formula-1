@@ -14,6 +14,13 @@ import com.formula1.simulacion.GestorTemporada;
 import com.formula1.simulacion.SimuladorClasificacion;
 import com.formula1.simulacion.TablaCampeonato;
 
+/**
+ * Pantalla que simula todas las carreras restantes de la temporada de una vez.
+ * Ejecuta la simulacion en un hilo secundario mostrando una barra de progreso.
+ * Al finalizar presenta: campeon del mundo, podio (top 3), y estadisticas
+ * de la temporada completa (total carreras, DNFs, accidentes, tasa de finalizacion).
+ */
+
 public class PantallaTemporadaCompleta {
     private AppFX app;
     private GestorTemporada gestorTemporada;
@@ -32,7 +39,7 @@ public class PantallaTemporadaCompleta {
 
     private Scene crearEscena() {
         BorderPane root = new BorderPane();
-        root.setStyle("-fx-background-color: #1a1a1a;");
+        root.getStyleClass().add("root-screen");
 
         // Header
         Label titulo = new Label("SIMULACIÓN DE TEMPORADA COMPLETA");
@@ -53,14 +60,12 @@ public class PantallaTemporadaCompleta {
 
         ProgressBar progressBar = new ProgressBar(0);
         progressBar.setPrefWidth(600);
-        progressBar.setStyle("-fx-accent: #e10600;");
 
         Label progreso = new Label("Listo para simular");
         progreso.setStyle("-fx-text-fill: #95a5a6; -fx-font-size: 14px;");
 
         Button btnIniciar = new Button("🏆 INICIAR SIMULACIÓN");
-        btnIniciar.setStyle("-fx-background-color: #e10600; -fx-text-fill: white; " +
-                "-fx-font-size: 20px; -fx-padding: 15px 50px; -fx-background-radius: 10;");
+        btnIniciar.getStyleClass().add("boton-cta");
         btnIniciar.setOnAction(e -> {
             btnIniciar.setDisable(true);
             simularTemporada(progressBar, progreso, root);
@@ -71,7 +76,9 @@ public class PantallaTemporadaCompleta {
         root.setTop(header);
         root.setCenter(centro);
 
-        return new Scene(root, 1000, 700);
+        Scene scene = new Scene(root, 1000, 700);
+        Estilos.aplicar(scene);
+        return scene;
     }
 
     private void simularTemporada(ProgressBar progressBar, Label progreso, BorderPane root) {
@@ -148,24 +155,21 @@ public class PantallaTemporadaCompleta {
 
         // Botones
         Button btnVerCampeonato = new Button("Ver Tabla Completa");
-        btnVerCampeonato.setStyle("-fx-background-color: #27ae60; -fx-text-fill: white; " +
-                "-fx-font-size: 16px; -fx-padding: 10px 30px; -fx-background-radius: 5;");
+        btnVerCampeonato.getStyleClass().add("button");
         btnVerCampeonato.setOnAction(e -> {
             PantallaCampeonato pantalla = new PantallaCampeonato(app, gestorTemporada);
             app.getPrimaryStage().setScene(pantalla.getScene());
         });
 
         Button btnVerHistorial = new Button("Ver Historial");
-        btnVerHistorial.setStyle("-fx-background-color: #3498db; -fx-text-fill: white; " +
-                "-fx-font-size: 16px; -fx-padding: 10px 30px; -fx-background-radius: 5;");
+        btnVerHistorial.getStyleClass().add("button");
         btnVerHistorial.setOnAction(e -> {
             PantallaHistorial pantalla = new PantallaHistorial(app, gestorTemporada);
             app.getPrimaryStage().setScene(pantalla.getScene());
         });
 
         Button btnVolver = new Button("Volver al Menú");
-        btnVolver.setStyle("-fx-background-color: #34495e; -fx-text-fill: white; " +
-                "-fx-font-size: 16px; -fx-padding: 10px 30px; -fx-background-radius: 5;");
+        btnVolver.getStyleClass().add("nav-boton-salir");
         btnVolver.setOnAction(e -> app.volverAlInicio());
 
         HBox botones = new HBox(15, btnVerCampeonato, btnVerHistorial, btnVolver);
