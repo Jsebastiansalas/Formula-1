@@ -2,6 +2,8 @@ package com.formula1.ui;
 
 import com.formula1.almacenamiento.HistorialResultados;
 import com.formula1.gestor.GestorCircuitos;
+import com.formula1.gestor.GestorPilotos;
+import com.formula1.gestor.GestorVehiculos;
 import com.formula1.modelo.Circuito;
 import com.formula1.simulacion.GestorTemporada;
 import com.formula1.simulacion.SimuladorClasificacion;
@@ -23,6 +25,8 @@ import javafx.util.Duration;
 
 public class AppFX extends Application {
     private GestorCircuitos gestorCircuitos;
+    private GestorPilotos gestorPilotos;
+    private GestorVehiculos gestorVehiculos;
     private GestorTemporada gestorTemporada;
     private SimuladorClasificacion simulador;
     private HistorialResultados historial;
@@ -46,6 +50,9 @@ public class AppFX extends Application {
     private void inicializarComponentes() {
         gestorCircuitos = new GestorCircuitos();
         gestorCircuitos.cargarDesdeJSON("data/circuitos.json");
+
+        gestorPilotos = new GestorPilotos();
+        gestorVehiculos = new GestorVehiculos();
 
         gestorTemporada = new GestorTemporada(2026);
         gestorTemporada.cargarCalendario(gestorCircuitos);
@@ -113,8 +120,11 @@ public class AppFX extends Application {
         Button btnHistorial = crearBotonNav("📊  Historial de Carreras");
         btnHistorial.setOnAction(e -> mostrarHistorial());
 
+        Button btnAdministracion = crearBotonNav("⚙️  Administración");
+        btnAdministracion.setOnAction(e -> mostrarAdministracion());
+
         VBox navBox = new VBox(2, btnSimularCarrera, btnSimularTemporada,
-                btnVerCalendario, btnVerCampeonato, btnHistorial);
+                btnVerCalendario, btnVerCampeonato, btnHistorial, btnAdministracion);
 
         Region espaciador = new Region();
         VBox.setVgrow(espaciador, Priority.ALWAYS);
@@ -222,6 +232,26 @@ public class AppFX extends Application {
     private void mostrarHistorial() {
         PantallaHistorial pantallaHistorial = new PantallaHistorial(this, gestorTemporada);
         primaryStage.setScene(pantallaHistorial.getScene());
+    }
+
+    public void mostrarAdministracion() {
+        PantallaAdministracion pantallaAdmin = new PantallaAdministracion(this);
+        primaryStage.setScene(pantallaAdmin.getScene());
+    }
+
+    public void mostrarGestionCircuitos() {
+        PantallaGestionCircuitos pantallaGestion = new PantallaGestionCircuitos(this, gestorCircuitos);
+        primaryStage.setScene(pantallaGestion.getScene());
+    }
+
+    public void mostrarGestionPilotos() {
+        PantallaGestionPilotos pantallaGestion = new PantallaGestionPilotos(this, gestorPilotos);
+        primaryStage.setScene(pantallaGestion.getScene());
+    }
+
+    public void mostrarGestionVehiculos() {
+        PantallaGestionVehiculos pantallaGestion = new PantallaGestionVehiculos(this, gestorVehiculos);
+        primaryStage.setScene(pantallaGestion.getScene());
     }
 
     public void volverAlInicio() {

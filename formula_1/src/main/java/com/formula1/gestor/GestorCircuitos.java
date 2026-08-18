@@ -89,4 +89,16 @@ public class GestorCircuitos {
             System.out.println(c);
         }
     }
+
+    public List<Circuito> obtenerTodosCircuitos() {
+        return new java.util.ArrayList<>(circuitos.values());
+    }
+
+    public boolean actualizarCircuito(Circuito circuito) {
+        if (!circuitos.containsKey(circuito.getNombre())) {
+            return false;
+        }
+        circuitos.put(circuito.getNombre(), circuito);
+        return true;
+    }
 }
